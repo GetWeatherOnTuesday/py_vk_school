@@ -1,62 +1,34 @@
 $(document).ready(function(){
+	$(".day").removeClass("selected");
 	$(".day").on("click", function(){
 		$(".day").removeClass("selected");
 		$(this).addClass("selected");
-		$(function(){day_output(0)});
+		$(function() {day_output(0)});
 	});
+	autoSelectDay();
+	$(function() {day_output(1)});
 });
 
-
-
-
-
-
-
-
-var data;
-$.ajax({
-	type: "GET",  
-	url: "table_rasp.csv",
-	dataType: "text",       
-	success: function(response)  
-	{
-		data = $.csv.toArrays(response);
-		generateHtmlTable(data);
-	}   
-});
-
-function generateHtmlTable(data) {
-    var html = '<table  class="table table-condensed table-hover table-striped">';
-
-      if(typeof(data[0]) === 'undefined') {
-        return null;
-      } else {
-		$.each(data, function( index, row ) {
-		  //bind header
-		  if(index == 0) {
-			html += '<thead>';
-			html += '<tr>';
-			$.each(row, function( index, colData ) {
-				html += '<th>';
-				html += colData;
-				html += '</th>';
-			});
-			html += '</tr>';
-			html += '</thead>';
-			html += '<tbody>';
-		  } else {
-			html += '<tr>';
-			$.each(row, function( index, colData ) {
-				html += '<td>';
-				html += colData;
-				html += '</td>';
-			});
-			html += '</tr>';
-		  }
-		});
-		html += '</tbody>';
-		html += '</table>';
-		alert(html);
-		$('#csv-display').append(html);
-	  }
-	};
+function autoSelectDay() {
+	var {dayShort} = setups(1);
+	for (var i in $(".day")) {
+		var day = $(".day")[i];
+		if (dayShort == day.textContent) {
+			$(day).addClass("selected");
+		}
+		else if (dayShort == "ВС"){
+			$($(".day")[0]).addClass("selected");
+		};
+		return day.textContent;
+	}
+}
+function selectedDay() {
+	var {dayShort} = setups(0);
+	for (var i in $(".day")) {
+		var day = $(".day")[i];
+		if (dayShort == day.textContent) {
+			return day.textContent;
+		};
+		
+	}
+}
