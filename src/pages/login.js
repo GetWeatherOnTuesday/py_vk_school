@@ -1,4 +1,4 @@
-function Login(params) {
+function Login() {
     return <div>login page</div>
 }
 
