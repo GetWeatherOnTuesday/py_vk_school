@@ -1,15 +1,15 @@
 {
-  "name": "school-timetable",
-  "version": "0.0.1",
+  "name": "py_vk_school",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss build src/style.css -o css/style.css"
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tailwindcss": "^3.2.4"
+    "express": "^4.18.2"
   }
 }
